@@ -10,7 +10,7 @@ function log(...args: any[]) {
 }
 
 export async function GET() {
-  log("GET /api/songs called");
+  log("GET /api/songs");
   const songs = await prisma.song.findMany({ orderBy: { timestamp: "desc" } });
   log("Fetched songs:", songs);
   return NextResponse.json(songs);
