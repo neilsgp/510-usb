@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 console.log("[510-usb] Server started and API route loaded");
 
-function log(...args: any[]) {
+function log(...args: unknown[]) {
   console.log("[510-usb]", ...args);
 }
 
