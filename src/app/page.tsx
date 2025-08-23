@@ -2,9 +2,17 @@
 
 import { useEffect, useState } from "react";
 
+type Song = {
+  id: number;
+  title: string | null;
+  originalLink: string;
+  youtubeLink: string | null;
+  timestamp: string;
+};
+
 export default function Home() {
   const [downloading, setDownloading] = useState(false);
-  const [songs, setSongs] = useState([]);
+  const [songs, setSongs] = useState<Song[]>([]);
 
   useEffect(() => {
     const fetchSongs = () => {
