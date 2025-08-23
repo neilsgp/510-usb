@@ -1,7 +1,15 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+// Extend the NodeJS.Global type to include the prisma property
+declare global {
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
+}
+
+// Ensure Prisma Client is initialized globally to avoid multiple instances in serverless environments
+const prisma = global.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;
 
 console.log("[510-usb] Server started and API route loaded");
 
